@@ -1,4 +1,4 @@
-package tatsumibruno.samples.kafka.ecommerce.fraud_detector;
+package tatsumibruno.samples.kafka.ecommerce.users;
 
 import com.google.common.base.MoreObjects;
 
@@ -35,5 +35,4 @@ public class Order {
                 .add("amount", amount)
                 .toString();
     }
-
 }

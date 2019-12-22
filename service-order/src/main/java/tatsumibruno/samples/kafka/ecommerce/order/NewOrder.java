@@ -1,7 +1,7 @@
 package tatsumibruno.samples.kafka.ecommerce.order;
 
 import tatsumibruno.samples.kafka.ecommerce.email.Email;
-import tatsumibruno.samples.kafka.ecommerce.kafka.KafkaDispatcher;
+import tatsumibruno.samples.kafka.ecommerce.http.KafkaDispatcher;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -12,15 +12,13 @@ public class NewOrder {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         for (var i = 0; i < 10; i++) {
             try (KafkaDispatcher newOrderDispatcher = new KafkaDispatcher("ECOMMERCE_NEW_ORDER")) {
-                var key = UUID.randomUUID().toString();
-                String userId = UUID.randomUUID().toString();
-                String orderId = String.valueOf(i);
+                String orderId = String.valueOf(i) + " - " + UUID.randomUUID().toString();
                 BigDecimal amount = BigDecimal.valueOf(Math.random() * 5000);
-                Order order = new Order(userId, orderId, amount);
-                newOrderDispatcher.send(key, order);
+                String userEmail = String.format("bruno.yokio_%s@gmail.com", BigDecimal.valueOf(Math.random() * 10).intValue());
+                newOrderDispatcher.send(userEmail, new Order(userEmail, orderId, amount));
                 try (KafkaDispatcher sendEmailDispatcher = new KafkaDispatcher("ECOMMERCE_SEND_EMAIL")) {
                     Email email = new Email("New Order", "Welcome, we are processing your order.");
-                    sendEmailDispatcher.send(key, email);
+                    sendEmailDispatcher.send(userEmail, email);
                 }
             }
         }

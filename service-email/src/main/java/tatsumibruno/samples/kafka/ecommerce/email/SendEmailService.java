@@ -1,7 +1,7 @@
 package tatsumibruno.samples.kafka.ecommerce.email;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import tatsumibruno.samples.kafka.ecommerce.kafka.KafkaService;
+import tatsumibruno.samples.kafka.ecommerce.http.KafkaService;
 
 import java.util.function.Consumer;
 

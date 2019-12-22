@@ -1,4 +1,4 @@
-package tatsumibruno.samples.kafka.ecommerce.fraud_detector;
+package tatsumibruno.samples.kafka.ecommerce.http;
 
 import com.google.common.base.MoreObjects;
 
@@ -15,18 +15,6 @@ public class Order {
         this.amount = amount;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(Order.class)
@@ -35,5 +23,4 @@ public class Order {
                 .add("amount", amount)
                 .toString();
     }
-
 }

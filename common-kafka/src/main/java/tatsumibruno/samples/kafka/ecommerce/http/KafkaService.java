@@ -1,4 +1,4 @@
-package tatsumibruno.samples.kafka.ecommerce.kafka;
+package tatsumibruno.samples.kafka.ecommerce.http;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,17 +16,17 @@ public class KafkaService<T> {
     private String groupName;
     private String topic;
     private Pattern topicPattern;
-    private Consumer<ConsumerRecord<String, String>> consumer;
+    private Consumer<ConsumerRecord<String, T>> consumer;
     private Class<T> type;
 
-    public KafkaService(String groupName, String topic, Consumer<ConsumerRecord<String, String>> consumer, Class<T> type) {
+    public KafkaService(String groupName, String topic, Consumer<ConsumerRecord<String, T>> consumer, Class<T> type) {
         this.topic = topic;
         this.consumer = consumer;
         this.groupName = groupName;
         this.type = type;
     }
 
-    public KafkaService(String groupName, Pattern topicPattern, Consumer<ConsumerRecord<String, String>> consumer, Class<T> type) {
+    public KafkaService(String groupName, Pattern topicPattern, Consumer<ConsumerRecord<String, T>> consumer, Class<T> type) {
         this.topicPattern = topicPattern;
         this.consumer = consumer;
         this.groupName = groupName;
@@ -34,7 +34,7 @@ public class KafkaService<T> {
     }
 
     public void run() {
-        var kafkaConsumer = new KafkaConsumer<String, String>(properties());
+        var kafkaConsumer = new KafkaConsumer<String, T>(properties());
         if (Objects.nonNull(topicPattern)) {
             kafkaConsumer.subscribe(topicPattern);
         } else {

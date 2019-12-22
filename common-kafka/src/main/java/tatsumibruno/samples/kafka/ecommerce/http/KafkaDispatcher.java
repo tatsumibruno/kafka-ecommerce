@@ -1,4 +1,4 @@
-package tatsumibruno.samples.kafka.ecommerce.kafka;
+package tatsumibruno.samples.kafka.ecommerce.http;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;

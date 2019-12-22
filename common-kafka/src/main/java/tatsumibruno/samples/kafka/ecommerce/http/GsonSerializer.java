@@ -1,4 +1,4 @@
-package tatsumibruno.samples.kafka.ecommerce.kafka;
+package tatsumibruno.samples.kafka.ecommerce.http;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

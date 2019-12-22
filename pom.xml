@@ -26,6 +26,8 @@
         <module>service-logging</module>
         <module>common-kafka</module>
         <module>service-order</module>
+        <module>service-users</module>
+        <module>service-http</module>
     </modules>
     <properties>
         <maven.compiler.release>11</maven.compiler.release>
